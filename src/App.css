@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    background: #ffffff;
+  }
+}
+
+@layer components {
+  .search-container {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform-origin: top center;
+    animation: slideDown 0.2s ease-out;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: rgb(17, 24, 39);
+    transition: all 0.2s ease;
+  }
+  
+  .search-input:focus {
+    color: rgb(59, 130, 246);
+  }
+  
+  .search-input::placeholder {
+    color: rgb(156, 163, 175);
+  }
+  
+  .result-item {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid #e5e7eb;
+    transition: all 0.15s ease-in-out;
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .result-item:hover {
+    background: #f9fafb;
+    transform: translateX(4px);
+  }
+  
+  .result-item:last-child {
+    border-bottom: none;
+  }
+  
+  .result-item.selected {
+    background: #f0f9ff;
+    border-left: 3px solid rgb(59, 130, 246);
+  }
+
+  .tag {
+    @apply px-2 py-0.5 rounded-full text-xs font-medium;
+    background: rgba(59, 130, 246, 0.1);
+    color: rgb(59, 130, 246);
+  }
+
+  .tag:hover {
+    background: rgba(59, 130, 246, 0.2);
+  }
+
+  .loading-dots::after {
+    content: '...';
+    animation: loadingDots 1.5s infinite;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loadingDots {
+  0% { content: '.'; }
+  33% { content: '..'; }
+  66% { content: '...'; }
+} 

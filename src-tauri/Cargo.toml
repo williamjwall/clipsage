@@ -1,0 +1,45 @@
+[package]
+name = "clipsage"
+version = "0.1.0"
+description = "A lightweight, offline-first desktop app that transforms everything you copy into a searchable, summarized, and semantically indexed knowledge base"
+authors = ["you"]
+license = ""
+repository = ""
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "clipsage_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0.0-beta", features = [] }
+
+[dependencies]
+tauri = { version = "2.0.0-beta", features = [
+    "app",
+    "window",
+    "webview",
+    "path",
+    "event",
+    "resources",
+    "menu",
+    "tray",
+    "shell-open"
+] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.36", features = ["full"] }
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "sqlite", "chrono", "json"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.7", features = ["v4", "serde"] }
+arboard = "3.3"
+anyhow = "1.0"
+reqwest = { version = "0.11", features = ["json"] }
+futures = "0.3"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
